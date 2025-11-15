@@ -122,7 +122,30 @@ jobs:
 
           ## Installation
 
-          ### Maven
+          ### Option 1: JitPack (Recommended - No Authentication Required)
+
+          Add this to your `pom.xml`:
+
+          ```xml
+          <repositories>
+              <repository>
+                  <id>jitpack.io</id>
+                  <url>https://jitpack.io</url>
+              </repository>
+          </repositories>
+
+          <dependencies>
+              <dependency>
+                  <groupId>com.github.lenucksi</groupId>
+                  <artifactId>ManageSieveJ</artifactId>
+                  <version>${{ needs.release-please.outputs.tag_name }}</version>
+              </dependency>
+          </dependencies>
+          ```
+
+          **No authentication required!** JitPack builds from GitHub releases automatically.
+
+          ### Option 2: GitHub Packages (Requires Authentication)
 
           Add this to your `pom.xml`:
 
@@ -191,3 +214,10 @@ jobs:
 
           gh release edit ${{ needs.release-please.outputs.tag_name }} \
             --notes-file <(cat <(gh release view ${{ needs.release-please.outputs.tag_name }} --json body -q .body) usage.md)
+
+      - name: Trigger JitPack build
+        run: |
+          echo "Triggering JitPack build for release ${{ needs.release-please.outputs.tag_name }}..."
+          # Trigger build by requesting the artifact (30 second timeout to avoid waiting for full build)
+          curl -s -m 30 "https://jitpack.io/com/github/lenucksi/ManageSieveJ/${{ needs.release-please.outputs.tag_name }}/build.log" || true
+          echo "JitPack build triggered. Check status at: https://jitpack.io/com/github/lenucksi/ManageSieveJ/${{ needs.release-please.outputs.tag_name }}"
