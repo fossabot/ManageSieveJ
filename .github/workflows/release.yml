@@ -72,7 +72,7 @@ jobs:
           cache: 'maven'
 
       - name: Configure Maven settings
-        uses: s4u/maven-settings-action@7802f6aec16c9098b4798ad1f1d8ac75198194bd # v3.0.0
+        uses: s4u/maven-settings-action@894661b3ddae382f1ae8edbeab60987e08cf0788 # v4.0.0
         with:
           servers: |
             [{
