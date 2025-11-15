@@ -95,24 +95,49 @@ This will check for unreleased commits and create a release PR if needed.
 
 ## Consuming Releases in SieveEditor
 
-After a release is published to GitHub Packages, update SieveEditor's `pom.xml`:
+### Option 1: JitPack (Recommended - No Authentication) 🌟
+
+After a release is published, update SieveEditor's `pom.xml`:
 
 ```xml
-<dependency>
-    <groupId>com.fluffypeople</groupId>
-    <artifactId>managesievej</artifactId>
-    <version>0.3.3</version> <!-- Use latest version -->
-</dependency>
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
 
+<dependencies>
+    <dependency>
+        <groupId>com.github.lenucksi</groupId>
+        <artifactId>ManageSieveJ</artifactId>
+        <version>v0.3.3</version> <!-- Use release tag -->
+    </dependency>
+</dependencies>
+```
+
+**No authentication required!** JitPack builds from GitHub releases automatically.
+
+### Option 2: GitHub Packages (Requires Authentication)
+
+```xml
 <repositories>
     <repository>
         <id>github</id>
         <url>https://maven.pkg.github.com/lenucksi/ManageSieveJ</url>
     </repository>
 </repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.fluffypeople</groupId>
+        <artifactId>managesievej</artifactId>
+        <version>0.3.3</version>
+    </dependency>
+</dependencies>
 ```
 
-Configure GitHub Packages authentication in `~/.m2/settings.xml`:
+Requires GitHub Packages authentication in `~/.m2/settings.xml`:
 
 ```xml
 <servers>
