@@ -97,7 +97,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/Zwixx/ManageSieveJ</url>
+            <url>https://maven.pkg.github.com/lenucksi/ManageSieveJ</url>
         </repository>
     </distributionManagement>
 </project>
