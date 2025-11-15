@@ -1,9 +1,0 @@
-{
-  "packages": {
-    ".": {
-      "release-type": "maven",
-      "package-name": "com.fluffypeople.managesievej",
-      "changelog-path": "CHANGELOG.md"
-    }
-  }
-}
